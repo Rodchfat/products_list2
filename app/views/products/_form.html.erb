@@ -1,0 +1,13 @@
+<%= form_for @product do |f| %>
+<div class= "field"> 
+<%= f.label :name %></br>
+<%= f.text_field :name %>
+</div></br>
+<div class= "field"> 
+<%= f.label :category %></br>
+<%= f.text_field :category %>
+</div></br>
+<div calss="action">
+    <%= f.submit %>
+</div>
+<% end %>
