@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
+     @products = Product.all
      @product = Product.new
-    @products = Product.all
   end
 
   def new
@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     @product= Product.new(product_params)
     if @product.save
       flash[:notice] = "Porduct was successfully created"
-      redirect_to product_path(@product)
+      redirect_to products_path
     else
       render 'new'
     end
@@ -36,6 +36,6 @@ class ProductsController < ApplicationController
   
   private
   def product_params
-    params.permit(:name, :category)
+    params.require(:product).permit(:name, :category)
   end
 end
