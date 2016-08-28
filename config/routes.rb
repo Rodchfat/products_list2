@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   # get 'products/show'
 
   # get 'products/edit'
-  resources :products
+  resources :products do 
+    collection do
+      put :index
+    end
+  end
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

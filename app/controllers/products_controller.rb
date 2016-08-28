@@ -2,6 +2,14 @@ class ProductsController < ApplicationController
   def index
      @products = Product.all
      @product = Product.new
+    # if !params[:product].nil?
+     #@product = Product.where(:name => params[:name].values)
+     if Product.where(params[:name]).values == 1
+       @correct_ans = @product
+     else
+       nil
+   end
+  # redirect_to product_path(@product)
   end
 
   def new
@@ -36,6 +44,9 @@ class ProductsController < ApplicationController
   
   private
   def product_params
-    params.require(:product).permit(:name, :category)
+    params.require(:product).permit("name[]", :category)
   end
+  # def params_model
+  #   params[:product]
+  # end
 end

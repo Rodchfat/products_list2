@@ -3,15 +3,16 @@
 <p>
     <%= link_to "Create New Product", new_product_path %>
 </p>
+<%= form_tag products_path, method: :put do %>
 <table>
     <tr><th></th>
     <th>Name</th>
     <th>Category</th></tr>
     
 <% @products.each do |product| %>
-<tr><td><%= check_box_tag "product_ids[]", product.id %></td>
-<td><%= product.name %></td>
-<td><%= product.category %></td>
+<tr><td><%=check_box_tag("product.name[]", product.name, product.id)%></td>
+<td><%=label_tag(:product, product.name)%></td>
+<td><%=label_tag(:product, product.category)%></td>
 <td><%= link_to "Edit", edit_product_path(product) %></td>
 <td><%= link_to "Show", product_path(product) %></td>
 <td><%= link_to "Delete", product_path(product), method: :delete %></td></tr>
@@ -21,3 +22,6 @@
 <% end %>
 </table>
 <%= submit_tag "check Product" %>
+
+<% end %>
+
